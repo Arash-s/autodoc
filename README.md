@@ -31,7 +31,7 @@ Autodoc
 
 
 ## What is this?
-Autodoc is a **experimental** toolkit for auto-generating codebase documentation for git repositories using Large Language Models, like [Gemini-Pro](https://ai.google.dev/) or [Alpaca](https://github.com/ggerganov/llama.cpp). Autodoc can be [installed](#get-started) in your repo in about 5 minutes. It indexes your codebase through a depth-first traversal of all repository contents and calls an LLM to write documentation for each file and folder. These documents can be combined to describe the different components of your system and how they work together.
+Autodoc is a **experimental** toolkit for auto-generating codebase documentation for git repositories using Large Language Models, like [Gemini&nbsp;2.5&nbsp;Pro](https://ai.google.dev/) or [Alpaca](https://github.com/ggerganov/llama.cpp). Autodoc can be [installed](#get-started) in your repo in about 5 minutes. It indexes your codebase through a depth-first traversal of all repository contents and calls an LLM to write documentation for each file and folder. These documents can be combined to describe the different components of your system and how they work together.
 
 The generated documentation lives in your codebase, and travels where your code travels. Developers who download your code can use the `doc` command to ask questions about your codebase and get highly specific answers with reference links back to code files. 
 
@@ -46,7 +46,7 @@ Autodoc is in the early stages of development. It is functional, but not ready f
 
 **Answer:** Autodoc is in the early stages of development. As such, the response quality can vary widely based on the type of project your indexing and how questions are phrased. A few tips to writing good query:
 1. Be specific with your questions. Ask things like "What are the different components of authorization in this system?" rather than "explain auth". This will help Autodoc select the right context to get the best answer for your question.
-2. Use Gemini-Pro. Gemini-Pro is substantially better at understanding code compared to smaller models and this understanding carries over into writing good documentation as well.
+2. Use Gemini&nbsp;2.5&nbsp;Pro. Gemini&nbsp;2.5&nbsp;Pro is substantially better at understanding code compared to smaller models and this understanding carries over into writing good documentation as well.
 
 
 ### Examples
@@ -145,7 +145,7 @@ This screen estimates the cost of indexing your repository. You can also access 
 
 For every file in your project, Autodoc calculates the number of tokens in the file based on the file content. The more lines of code, the larger the number of tokens. Using this number, it determine which model it will use on per file basis, always choosing the cheapest model whose context length supports the number of tokens in the file. If you're interested in helping make model selection configurable in Autodoc, check out [this issue](https://github.com/context-labs/autodoc/issues/9).
 
-**Note:** This naive model selection strategy means that short files may be documented using cheaper models, which can result in less accurate documentation. **We recommend using Gemini-Pro for the best results.**
+**Note:** This naive model selection strategy means that short files may be documented using cheaper models, which can result in less accurate documentation. **We recommend using Gemini&nbsp;2.5&nbsp;Pro for the best results.**
 
 For large projects, the cost can be several hundred dollars. View Google's Gemini pricing [here](https://ai.google.dev/pricing).
 
