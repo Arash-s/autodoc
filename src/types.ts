@@ -1,4 +1,4 @@
-import { OpenAIChat } from 'langchain/llms';
+import { ChatGoogleGenerativeAI } from '@langchain/google-genai';
 
 export type AutodocUserConfig = {
   llms: LLMModels[];
@@ -82,11 +82,8 @@ export type TraverseFileSystemParams = {
 };
 
 export enum LLMModels {
-  GPT3 = 'gpt-3.5-turbo',
-  GPT4 = 'gpt-4',
-  GPT432k = 'gpt-4-32k',
-  GPT4o = 'gpt-4o',
-  GPT4omini = 'gpt-4o-mini',
+  GEMINI_PRO = 'gemini-pro',
+  GEMINI_PRO_VISION = 'gemini-pro-vision',
 }
 
 export type LLMModelDetails = {
@@ -94,7 +91,7 @@ export type LLMModelDetails = {
   inputCostPer1KTokens: number;
   outputCostPer1KTokens: number;
   maxLength: number;
-  llm: OpenAIChat;
+  llm: ChatGoogleGenerativeAI;
   inputTokens: number;
   outputTokens: number;
   succeeded: number;

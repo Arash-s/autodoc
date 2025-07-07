@@ -1,4 +1,4 @@
-import { OpenAIChat } from 'langchain/llms';
+import { ChatGoogleGenerativeAI } from '@langchain/google-genai';
 import { LLMChain, ChatVectorDBQAChain, loadQAChain } from 'langchain/chains';
 import { PromptTemplate } from 'langchain/prompts';
 import { HNSWLib } from '../../../langchain/hnswlib.js';
@@ -60,18 +60,16 @@ export const makeChain = (
    */
   const llm = llms?.[1] ?? llms[0];
   const questionGenerator = new LLMChain({
-    llm: new OpenAIChat({ temperature: 0.1, modelName: llm }),
+    llm: new ChatGoogleGenerativeAI({ model: llm, temperature: 0.1 }),
     prompt: CONDENSE_PROMPT,
   });
 
   // eslint-disable-next-line prettier/prettier
   const QA_PROMPT = makeQAPrompt(projectName, repositoryUrl, contentType, chatPrompt, targetAudience);
   const docChain = loadQAChain(
-    new OpenAIChat({
+    new ChatGoogleGenerativeAI({
+      model: llm,
       temperature: 0.2,
-      frequencyPenalty: 0,
-      presencePenalty: 0,
-      modelName: llm,
       streaming: Boolean(onTokenStream),
       callbackManager: {
         handleLLMNewToken: onTokenStream,
