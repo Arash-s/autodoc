@@ -1,32 +1,16 @@
-import { OpenAIChat } from 'langchain/llms';
+import { ChatGoogleGenerativeAI } from '@langchain/google-genai';
 import { LLMModelDetails, LLMModels } from '../../types.js';
 
 export const models: Record<LLMModels, LLMModelDetails> = {
-  [LLMModels.GPT3]: {
-    name: LLMModels.GPT3,
-    inputCostPer1KTokens: 0.0015,
-    outputCostPer1KTokens: 0.002,
-    maxLength: 3050,
-    llm: new OpenAIChat({
-      temperature: 0.1,
-      openAIApiKey: process.env.OPENAI_API_KEY,
-      modelName: LLMModels.GPT3,
-    }),
-    inputTokens: 0,
-    outputTokens: 0,
-    succeeded: 0,
-    failed: 0,
-    total: 0,
-  },
-  [LLMModels.GPT4]: {
-    name: LLMModels.GPT4,
-    inputCostPer1KTokens: 0.03,
-    outputCostPer1KTokens: 0.06,
+  [LLMModels.GEMINI_PRO]: {
+    name: LLMModels.GEMINI_PRO,
+    inputCostPer1KTokens: 0.00025,
+    outputCostPer1KTokens: 0.0005,
     maxLength: 8192,
-    llm: new OpenAIChat({
+    llm: new ChatGoogleGenerativeAI({
+      model: LLMModels.GEMINI_PRO,
       temperature: 0.1,
-      openAIApiKey: process.env.OPENAI_API_KEY,
-      modelName: LLMModels.GPT4,
+      maxOutputTokens: 2048,
     }),
     inputTokens: 0,
     outputTokens: 0,
@@ -34,47 +18,15 @@ export const models: Record<LLMModels, LLMModelDetails> = {
     failed: 0,
     total: 0,
   },
-  [LLMModels.GPT432k]: {
-    name: LLMModels.GPT432k,
-    inputCostPer1KTokens: 0.06,
-    outputCostPer1KTokens: 0.12,
-    maxLength: 32768,
-    llm: new OpenAIChat({
+  [LLMModels.GEMINI_PRO_VISION]: {
+    name: LLMModels.GEMINI_PRO_VISION,
+    inputCostPer1KTokens: 0.00025,
+    outputCostPer1KTokens: 0.0005,
+    maxLength: 8192,
+    llm: new ChatGoogleGenerativeAI({
+      model: LLMModels.GEMINI_PRO_VISION,
       temperature: 0.1,
-      openAIApiKey: process.env.OPENAI_API_KEY,
-      modelName: LLMModels.GPT4,
-    }),
-    inputTokens: 0,
-    outputTokens: 0,
-    succeeded: 0,
-    failed: 0,
-    total: 0,
-  },
-  [LLMModels.GPT4o]: {
-    name: LLMModels.GPT4o,
-    inputCostPer1KTokens: 0.005,
-    outputCostPer1KTokens: 0.015,
-    maxLength: 4096,
-    llm: new OpenAIChat({
-      temperature: 0.1,
-      openAIApiKey: process.env.OPENAI_API_KEY,
-      modelName: LLMModels.GPT4o,
-    }),
-    inputTokens: 0,
-    outputTokens: 0,
-    succeeded: 0,
-    failed: 0,
-    total: 0,
-  },
-  [LLMModels.GPT4omini]: {
-    name: LLMModels.GPT4omini,
-    inputCostPer1KTokens: 0.00015,
-    outputCostPer1KTokens: 0.0006,
-    maxLength: 16384,
-    llm: new OpenAIChat({
-      temperature: 0.1,
-      openAIApiKey: process.env.OPENAI_API_KEY,
-      modelName: LLMModels.GPT4omini,
+      maxOutputTokens: 2048,
     }),
     inputTokens: 0,
     outputTokens: 0,

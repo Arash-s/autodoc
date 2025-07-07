@@ -1,8 +1,7 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { Md5 } from 'ts-md5';
-import { OpenAIChat } from 'langchain/llms';
-import { encoding_for_model } from '@dqbd/tiktoken';
+import { ChatGoogleGenerativeAI } from '@langchain/google-genai';
 import { APIRateLimit } from '../../utils/APIRateLimit.js';
 import {
   createCodeFileSummary,
@@ -55,9 +54,9 @@ export const processRepository = async (
 
   const callLLM = async (
     prompt: string,
-    model: OpenAIChat,
+    model: ChatGoogleGenerativeAI,
   ): Promise<string> => {
-    return rateLimit.callApi(() => model.call(prompt));
+    return rateLimit.callApi(() => model.invoke(prompt));
   };
 
   const isModel = (model: LLMModelDetails | null): model is LLMModelDetails =>
@@ -121,9 +120,8 @@ export const processRepository = async (
       return;
     }
 
-    const encoding = encoding_for_model(model.name);
-    const summaryLength = encoding.encode(summaryPrompt).length;
-    const questionLength = encoding.encode(questionsPrompt).length;
+    const summaryLength = summaryPrompt.length;
+    const questionLength = questionsPrompt.length;
 
     try {
       if (!dryRun) {
