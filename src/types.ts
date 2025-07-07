@@ -82,8 +82,8 @@ export type TraverseFileSystemParams = {
 };
 
 export enum LLMModels {
-  GEMINI_PRO = 'gemini-pro',
-  GEMINI_PRO_VISION = 'gemini-pro-vision',
+  GEMINI_PRO = 'gemini-2.5-pro',
+  GEMINI_PRO_VISION = 'gemini-2.5-pro-vision',
 }
 
 export type LLMModelDetails = {
