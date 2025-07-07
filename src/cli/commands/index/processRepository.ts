@@ -56,7 +56,10 @@ export const processRepository = async (
     prompt: string,
     model: ChatGoogleGenerativeAI,
   ): Promise<string> => {
-    return rateLimit.callApi(() => model.invoke(prompt));
+    const res = await rateLimit.callApi(() => model.invoke(prompt));
+    // `invoke` returns an AIMessageChunk; extract the content string
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    return (res as any).content ?? res;
   };
 
   const isModel = (model: LLMModelDetails | null): model is LLMModelDetails =>
