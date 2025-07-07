@@ -5,7 +5,7 @@ import {
   FileSummary,
   FolderSummary,
   ProcessFile,
-} from '../../../types';
+} from '../../../types.js';
 import { traverseFileSystem } from '../../utils/traverseFileSystem.js';
 import { spinnerSuccess, updateSpinnerText } from '../../spinner.js';
 import { getFileName } from '../../utils/FileUtil.js';
@@ -46,6 +46,9 @@ export const convertJsonToMarkdown = async ({
   const processFile: ProcessFile = async ({
     fileName,
     filePath,
+  }: {
+    fileName: string;
+    filePath: string;
   }): Promise<void> => {
     const content = await fs.readFile(filePath, 'utf-8');
 

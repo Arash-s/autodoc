@@ -87,10 +87,11 @@ $ git clone https://github.com/context-labs/autodoc.git
 $ cd autodoc
 ```
 
-Right now Autodoc only supports Google's Gemini models. Make sure you have your Google API key exported in your current session:
+Right now Autodoc only supports Google's Gemini models. Make sure you have
+authenticated using [Application Default Credentials](https://cloud.google.com/docs/authentication/provide-credentials-adc):
 
 ```bash
-$ export GOOGLE_API_KEY=<YOUR_KEY_HERE>
+$ gcloud auth application-default login
 ```
 
 To start the Autodoc query CLI, run:
@@ -116,10 +117,10 @@ Change directory into the root of your project:
 ```bash
 cd $PROJECT_ROOT
 ```
-Make sure your Google API key is available in the current session:
+Make sure you are authenticated with Application Default Credentials:
 
 ```bash
-$ export GOOGLE_API_KEY=<YOUR_KEY_HERE>
+$ gcloud auth application-default login
 ```
 
 Run the `init` command:

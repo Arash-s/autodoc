@@ -56,11 +56,11 @@ export const makeChain = (
   onTokenStream?: (token: string) => void,
 ) => {
   /**
-   * GPT-4 or GPT-3
+   * Gemini Pro or Gemini Pro Vision
    */
   const llm = llms?.[1] ?? llms[0];
   const questionGenerator = new LLMChain({
-    llm: new ChatGoogleGenerativeAI({ model: llm, temperature: 0.1 }),
+    llm: new ChatGoogleGenerativeAI({ model: llm, temperature: 0.1 }) as any,
     prompt: CONDENSE_PROMPT,
   });
 
@@ -71,12 +71,10 @@ export const makeChain = (
       model: llm,
       temperature: 0.2,
       streaming: Boolean(onTokenStream),
-      callbackManager: {
-        handleLLMNewToken: onTokenStream,
-        handleLLMStart: () => null,
-        handleLLMEnd: () => null,
-      } as any,
-    }),
+      callbacks: onTokenStream
+        ? [{ handleLLMNewToken: onTokenStream }]
+        : undefined,
+    }) as any,
     { prompt: QA_PROMPT },
   );
 

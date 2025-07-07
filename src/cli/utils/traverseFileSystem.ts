@@ -1,7 +1,7 @@
 import fs from 'node:fs/promises';
 import path from 'path';
 import minimatch from 'minimatch';
-import { isText } from 'istextorbinary';
+import { isTextSync } from 'istextorbinary';
 import { TraverseFileSystemParams } from '../../types.js';
 
 export const traverseFileSystem = async (
@@ -71,7 +71,7 @@ export const traverseFileSystem = async (
 
           const buffer = await fs.readFile(filePath);
 
-          if (isText(fileName, buffer)) {
+          if (isTextSync(fileName, buffer)) {
             await processFile?.({
               fileName,
               filePath,
