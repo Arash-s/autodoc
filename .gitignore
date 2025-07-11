@@ -26,3 +26,6 @@ next-env.d.ts
 /dist*
 
 .DS_Store
+# dotnet build artifacts
+/backend/**/bin/
+/backend/**/obj/
